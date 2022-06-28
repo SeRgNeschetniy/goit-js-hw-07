@@ -28,19 +28,25 @@ function onOpenImage(e) {
   }
 
   const instance = basicLightbox.create(
-    `<img src="${e.target.dataset.source}">`,
+    `<img src="${e.target.dataset.source}" alt="${e.target.alt}">`,
     {
       onShow: (instance) => {
-        window.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
-            instance.close();
-          }
-        });
+        window.addEventListener("keydown", onLightboxClose);
+      },
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onLightboxClose);
       },
     }
   );
 
   instance.show();
+}
+
+function onLightboxClose(e) {
+  if (e.key === "Escape") {
+    instance.close();
+    return;
+  }
 }
 
 console.log(galleryItems);
