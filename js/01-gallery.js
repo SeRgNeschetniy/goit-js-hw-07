@@ -40,12 +40,12 @@ function onOpenImage(e) {
   );
 
   instance.show();
-}
 
-function onLightboxClose(e) {
-  if (e.key === "Escape") {
-    instance.close();
-    return;
+  function onLightboxClose(e) {
+    if (e.key === "Escape") {
+      instance.close();
+      return;
+    }
   }
 }
 
